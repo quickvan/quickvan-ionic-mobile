@@ -72,6 +72,7 @@ angular.module('quickvan', [
       templateUrl: 'templates/client/view-travel.html',
       controller: 'ClientViewTravelController'
     })
+    /*
     .state('driver', {
       abstract: true,
       cache: false,
@@ -89,7 +90,7 @@ angular.module('quickvan', [
       url: '/view-travel/:id',
       templateUrl: 'templates/driver/view-travel.html',
       controller: 'DriverViewOrderController'
-    });
+    })*/;
 
     $urlRouterProvider.otherwise('/login');
 });
