@@ -1,85 +1,96 @@
 // Ionic Starter App
+angular.module('quickvan.controllers', []);
+angular.module('quickvan.services', []);
+angular.module('quickvan.filters', []);
 
 // angular.module is a global place for creating, registering and retrieving Angular modules
 // 'starter' is the name of this angular module example (also set in a <body> attribute in index.html)
 // the 2nd parameter is an array of 'requires'
-// 'starter.services' is found in services.js
-// 'starter.controllers' is found in controllers.js
-angular.module('starter', ['ionic', 'starter.controllers', 'starter.services'])
+angular.module('quickvan', [
+  'ionic',
+  'quickvan.controllers',
+  'quickvan.services',
+  'quickvan.filters',
+  'ngResource',
+  'ngCordova',
+  'uiGmapgoogle-maps',
+  'pusher-angular'
+])
 
-.run(function($ionicPlatform) {
+.constant('appConfig', {
+  baseUrl: 'http://localhost',
+  pusherKey: 'pusherKey'
+})
+
+.run(function($ionicPlatform, $window, appConfig) {
+  $window.client = new Pusher(appConfig.pusherKey);
+
   $ionicPlatform.ready(function() {
-    // Hide the accessory bar by default (remove this to show the accessory bar above the keyboard
-    // for form inputs)
-    if (window.cordova && window.cordova.plugins && window.cordova.plugins.Keyboard) {
+    if(window.cordova && window.cordova.plugins.Keyboard) {
+      // Hide the accessory bar by default (remove this to show the accessory bar above the keyboard
+      // for form inputs)
       cordova.plugins.Keyboard.hideKeyboardAccessoryBar(true);
-      cordova.plugins.Keyboard.disableScroll(true);
 
+      // Don't remove this line unless you know what you are doing. It stops the viewport
+      // from snapping when text inputs are focused. Ionic handles this internally for
+      // a much nicer keyboard experience.
+      cordova.plugins.Keyboard.disableScroll(true);
     }
-    if (window.StatusBar) {
-      // org.apache.cordova.statusbar required
+    if(window.StatusBar) {
       StatusBar.styleDefault();
     }
   });
 })
 
-.config(function($stateProvider, $urlRouterProvider) {
-
-  // Ionic uses AngularUI Router which uses the concept of states
-  // Learn more here: https://github.com/angular-ui/ui-router
-  // Set up the various states which the app can be in.
-  // Each state's controller can be found in controllers.js
+.config(function (
+    $stateProvider,
+    $urlRouterProvider,
+    $provide,
+    appConfig
+) {
   $stateProvider
-
-  // setup an abstract state for the tabs directive
-    .state('tab', {
-    url: '/tab',
-    abstract: true,
-    templateUrl: 'templates/tabs.html'
-  })
-
-  // Each tab has its own nav history stack:
-
-  .state('tab.dash', {
-    url: '/dash',
-    views: {
-      'tab-dash': {
-        templateUrl: 'templates/tab-dash.html',
-        controller: 'DashCtrl'
-      }
-    }
-  })
-
-  .state('tab.chats', {
-      url: '/chats',
-      views: {
-        'tab-chats': {
-          templateUrl: 'templates/tab-chats.html',
-          controller: 'ChatsCtrl'
-        }
-      }
+    .state('login', {
+      url: '/login',
+      templateUrl: 'templates/login.html',
+      controller: 'LoginController'
     })
-    .state('tab.chat-detail', {
-      url: '/chats/:chatId',
-      views: {
-        'tab-chats': {
-          templateUrl: 'templates/chat-detail.html',
-          controller: 'ChatDetailCtrl'
-        }
-      }
+    .state('client', {
+      abstract: true,
+      cache: false,
+      url: '/client',
+      templateUrl: 'templates/client/menu.html',
+      controller: 'ClientMenuController'
     })
+    .state('client.travel', {
+      url: '/travel',
+      templateUrl: 'templates/client/travel.html',
+      controller: 'ClientTravelController'
+    })
+    .state('client.view-travel', {
+      cache: false,
+      url: '/view-travel',
+      templateUrl: 'templates/client/view-travel.html',
+      controller: 'ClientViewTravelController'
+    })
+    /*
+    .state('driver', {
+      abstract: true,
+      cache: false,
+      url: '/driver',
+      templateUrl: 'templates/driver/menu.html',
+      controller: 'DriverMenuController'
+    })
+    .state('driver.travel', {
+      url: '/travel',
+      templateUrl: 'templates/driver/travel.html',
+      controller: 'DriverOrderController'
+    })
+    .state('driver.view-travel', {
+      cache: false,
+      url: '/view-travel/:id',
+      templateUrl: 'templates/driver/view-travel.html',
+      controller: 'DriverViewOrderController'
+    })*/;
 
-  .state('tab.account', {
-    url: '/account',
-    views: {
-      'tab-account': {
-        templateUrl: 'templates/tab-account.html',
-        controller: 'AccountCtrl'
-      }
-    }
-  });
-
-  // if none of the above states are matched, use this as the fallback
-  $urlRouterProvider.otherwise('/tab/dash');
-
+    $urlRouterProvider.otherwise('/login');
 });

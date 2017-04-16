@@ -1,0 +1,79 @@
+<ion-view>
+  <ion-nav-title>Minhas viagens</ion-nav-title>
+  <ion-content class="padding has-header">
+    <ion-refresher pulling-text="Puxe para atualizar..." on-refresh="doRefresh()"></ion-refresher>
+
+    <ion-list>
+      <ion-item ng-click="openTravelDetail()">
+        <div class="row">
+          <div class="col">
+            <h2>01/04/2017</h2>
+            <p>De Lorena/SP para Cruzeiro/SP</p>
+            <i class="ion ion-clock"> Partida: 08:00</i><br />
+            <i class="ion ion-android-done positive"> Aguardando</i>
+          </div>
+          <div class="col text-right">
+            <i class="ion ion-social-usd"> 80,00</i>
+          </div>
+        </div>
+      </ion-item>
+
+      <ion-item ng-click="openTravelDetail()">
+        <div class="row">
+          <div class="col">
+            <h2>20/03/2017</h2>
+            <p>De Guaratigueta/SP para Lorena/SP</p>
+            <i class="ion ion-clock"> Partida: 10:00</i><br />
+            <i class="ion ion-android-done-all balanced"> Encerrado</i>
+          </div>
+          <div class="col text-right">
+            <i class="ion ion-social-usd"> 50,00</i>
+          </div>
+        </div>
+      </ion-item>
+
+      <ion-item ng-click="openTravelDetail()">
+        <div class="row">
+          <div class="col">
+            <h2>01/03/2017</h2>
+            <p>De Lorena/SP para São José dos Campos/SP</p>
+            <i class="ion ion-clock"> Partida: 15:00</i><br />
+            <i class="ion ion-close-round assertive"> Cancelado</i>
+          </div>
+          <div class="col text-right">
+            <i class="ion ion-social-usd"> 150,00</i>
+          </div>
+        </div>
+      </ion-item>
+
+
+      <ion-item ng-click="openTravelDetail()">
+        <div class="row">
+          <div class="col">
+            <h2>23/02/2017</h2>
+            <p>De Cruzeiro/SP para São Paulo/SP</p>
+            <i class="ion ion-clock"> Partida: 07:00</i><br />
+            <i class="ion ion-android-done-all balanced"> Encerrado</i>
+          </div>
+          <div class="col text-right">
+            <i class="ion ion-social-usd"> 250,00</i>
+          </div>
+        </div>
+      </ion-item>
+
+      <ion-item ng-click="openTravelDetail()">
+        <div class="row">
+          <div class="col">
+            <h2>01/02/2017</h2>
+            <p>De Guarantingueta/SP para Santo André/SP</p>
+            <i class="ion ion-clock"> Partida: 06:00</i><br />
+            <i class="ion ion-android-done-all balanced"> Encerrado</i>
+          </div>
+          <div class="col text-right">
+            <i class="ion ion-social-usd"> 200,00</i>
+          </div>
+        </div>
+      </ion-item>
+    </ion-list>
+  </ion-content>
+</ion-view>
