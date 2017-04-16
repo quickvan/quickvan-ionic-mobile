@@ -1,0 +1,29 @@
+<ion-view>
+  <ion-nav-bar align-title="center" class="bar bar-positive">
+    <ion-nav-title> Quickvan Login</ion-nav-title>
+  </ion-nav-bar>
+
+  <ion-content class="padding">
+    <form name="formLogin" ng-submit="login(username, password)">
+      <div class="list list-inset">
+        <label class="item item-input">
+          <input type="text"
+            name="username"
+            placeholder="Usuário"
+            ng-model="username"
+            required="required" />
+        </label>
+      </div>
+      <div class="list list-inset">
+        <label class="item item-input">
+          <input type="password"
+            name="password"
+            placeholder="Senha"
+            ng-model="password"
+            required="required" />
+        </label>
+      </div>
+      <button type="submit" class="button button-full button-positive">Entrar</button>
+    </form>
+  </ion-content>
+</ion-view>
